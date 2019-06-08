@@ -76,11 +76,14 @@ class ActionsToolbar extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(ProfileImageSize / 2),
         ),
-        child: CachedNetworkImage(
-          imageUrl:
-              "https://secure.gravatar.com/avatar/ef4a9338dca42372f15427cdb4595ef7",
-          placeholder: CircularProgressIndicator(),
-          errorWidget: Icon(Icons.error),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10000.0),
+          child: CachedNetworkImage(
+            imageUrl:
+                "https://avatars3.githubusercontent.com/u/29952508?s=460&v=4",
+            placeholder: CircularProgressIndicator(),
+            errorWidget: Icon(Icons.error),
+          ),
         ),
       ),
     );
@@ -127,11 +130,14 @@ class ActionsToolbar extends StatelessWidget {
               gradient: musicGradient,
               borderRadius: BorderRadius.circular(ProfileImageSize / 2),
             ),
-            child: CachedNetworkImage(
-              imageUrl:
-                  "https://secure.gravatar.com/avatar/ef4a9338dca42372f15427cdb4595ef7",
-              placeholder: CircularProgressIndicator(),
-              errorWidget: Icon(Icons.error),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10000.0),
+              child: CachedNetworkImage(
+                imageUrl:
+                    "https://avatars3.githubusercontent.com/u/29952508?s=460&v=4",
+                placeholder: CircularProgressIndicator(),
+                errorWidget: Icon(Icons.error),
+              ),
             ),
           )
         ],
