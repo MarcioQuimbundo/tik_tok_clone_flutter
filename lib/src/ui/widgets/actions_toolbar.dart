@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tik_tok_clone_flutter/tik_tok_icons.dart';
-//import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ActionsToolbar extends StatelessWidget {
   // full dimensions of an action
@@ -22,6 +22,7 @@ class ActionsToolbar extends StatelessWidget {
     return Container(
       width: 100.0,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
+        _getFollowAction(),
         _getSocialAction(icon: TikTokIcons.heart, title: '3.2m'),
         _getSocialAction(icon: TikTokIcons.chat_bubble, title: '16.4k'),
         _getSocialAction(
@@ -34,6 +35,7 @@ class ActionsToolbar extends StatelessWidget {
     return Container(
       width: ActionWidgetSize,
       height: ActionWidgetSize,
+      margin: EdgeInsets.only(top: 10.0),
       child: Column(
         children: [
           Icon(icon,
@@ -64,16 +66,35 @@ class ActionsToolbar extends StatelessWidget {
 
   Widget _getProfilePicture() {
     return Positioned(
+      left: ((ActionWidgetSize / 2) - (ProfileImageSize / 2)),
       child: Container(
         height: ProfileImageSize,
         width: ProfileImageSize,
+        padding: EdgeInsets.all(1.0),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(ProfileImageSize / 2),
         ),
-        child: Container(),//CachedNetworkImage(),
+        child: CachedNetworkImage(
+          imageUrl:
+              "https://secure.gravatar.com/avatar/ef4a9338dca42372f15427cdb4595ef7",
+          placeholder: CircularProgressIndicator(),
+          errorWidget: Icon(Icons.error),
+        ),
       ),
     );
   }
-  Widget _getPlusIcon() {}
+
+  Widget _getPlusIcon() {
+    return Positioned(      
+      bottom: 0,
+      left: ((ActionWidgetSize / 2) - (PlusIconSize / 2)),
+      child: Container(
+        width: PlusIconSize,
+        height: PlusIconSize,
+        decoration: BoxDecoration(color: Color.fromARGB(255, 255, 43, 84), borderRadius: BorderRadius.circular(15.0)),
+        child: Icon(Icons.add, color: Colors.white, size: 20.0),
+      ),
+    );
+  }
 }
