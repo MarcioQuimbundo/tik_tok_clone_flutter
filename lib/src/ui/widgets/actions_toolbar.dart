@@ -27,6 +27,7 @@ class ActionsToolbar extends StatelessWidget {
         _getSocialAction(icon: TikTokIcons.chat_bubble, title: '16.4k'),
         _getSocialAction(
             icon: TikTokIcons.reply, title: '16.4k', isShare: true),
+        _getMusicPlayerAction(),
       ]),
     );
   }
@@ -86,14 +87,54 @@ class ActionsToolbar extends StatelessWidget {
   }
 
   Widget _getPlusIcon() {
-    return Positioned(      
+    return Positioned(
       bottom: 0,
       left: ((ActionWidgetSize / 2) - (PlusIconSize / 2)),
       child: Container(
         width: PlusIconSize,
         height: PlusIconSize,
-        decoration: BoxDecoration(color: Color.fromARGB(255, 255, 43, 84), borderRadius: BorderRadius.circular(15.0)),
+        decoration: BoxDecoration(
+            color: Color.fromARGB(255, 255, 43, 84),
+            borderRadius: BorderRadius.circular(15.0)),
         child: Icon(Icons.add, color: Colors.white, size: 20.0),
+      ),
+    );
+  }
+
+  LinearGradient get musicGradient => LinearGradient(colors: [
+        Colors.grey[800],
+        Colors.grey[900],
+        Colors.grey[900],
+        Colors.grey[800]
+      ], stops: [
+        0.0,
+        0.4,
+        0.6,
+        1.0
+      ], begin: Alignment.bottomLeft, end: Alignment.topRight);
+
+  Widget _getMusicPlayerAction() {
+    return Container(
+      height: ActionWidgetSize,
+      width: ActionWidgetSize,
+      child: Column(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.all(11.0),
+            height: ProfileImageSize,
+            width: ProfileImageSize,
+            decoration: BoxDecoration(
+              gradient: musicGradient,
+              borderRadius: BorderRadius.circular(ProfileImageSize / 2),
+            ),
+            child: CachedNetworkImage(
+              imageUrl:
+                  "https://secure.gravatar.com/avatar/ef4a9338dca42372f15427cdb4595ef7",
+              placeholder: CircularProgressIndicator(),
+              errorWidget: Icon(Icons.error),
+            ),
+          )
+        ],
       ),
     );
   }
